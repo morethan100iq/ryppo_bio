@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06090c" />
+    <meta
+      name="description"
+      content="Никита / ryppo. 17 лет, Python, Telegram-боты, API и свои проекты. Учусь, экспериментирую и набираюсь опыта."
+    />
+    <title>Никита / ryppo — Python & experiments</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/assets/fonts/manrope.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preload" as="image" href="/assets/ryppo-ice.png" />
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#about">Перейти к био</a>
+    <div class="ambient" aria-hidden="true"></div>
+    <canvas id="condensation" aria-hidden="true"></canvas>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="wordmark" href="#top" aria-label="ryppo — в начало">
+          <img
+            class="icon frost-icon"
+            src="/assets/icons/snowflake.svg"
+            alt=""
+            width="24"
+            height="24"
+          />
+          ryppo<span class="wordmark-dot">.</span>
+        </a>
+        <nav aria-label="Основная навигация">
+          <a href="#about">Обо мне</a>
+          <a href="#stack">Стек</a>
+          <a href="#contact">Контакты</a>
+        </nav>
+        <a
+          class="header-github"
+          href="https://github.com/morethan100iq"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub — morethan100iq"
+        >
+          <img
+            class="icon"
+            src="/assets/icons/github.svg"
+            alt=""
+            width="17"
+            height="17"
+          />
+          <span>GitHub</span>
+          <img
+            class="icon tiny"
+            src="/assets/icons/arrow-up-right.svg"
+            alt=""
+            width="14"
+            height="14"
+          />
+        </a>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-overline">
+            <span class="eyebrow"
+              ><span class="small-cross">+</span> PERSONAL SPACE / 001</span
+            >
+            <span class="cold-label"
+              ><img
+                class="icon frost-icon"
+                src="/assets/icons/snowflake.svg"
+                alt=""
+                width="14"
+                height="14"
+              />
+              STAY COOL. KEEP BUILDING.</span
+            >
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <span class="ice-fallback">RYPPO</span>
+            <img
+              id="ice-art"
+              class="ice-art"
+              src="/assets/ryppo-ice.png"
+              alt=""
+              fetchpriority="high"
+              width="1536"
+              height="1024"
+            />
+            <div class="art-vignette"></div>
+          </div>
+          <div class="hero-bottom">
+            <div class="hero-intro">
+              <div class="intro-title">
+                <h1 id="hero-title">Никита <span>/ ryppo</span></h1>
+                <span class="age-tag">17 лет</span>
+              </div>
+              <p>Учусь. Пишу код. Пробую новое.</p>
+              <div class="hero-actions">
+                <a
+                  class="button button-primary"
+                  href="https://t.me/ryppo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    class="icon"
+                    src="/assets/icons/telegram.svg"
+                    alt=""
+                    width="19"
+                    height="19"
+                  />
+                  Написать мне
+                  <img
+                    class="icon"
+                    src="/assets/icons/arrow-up-right.svg"
+                    alt=""
+                    width="17"
+                    height="17"
+                  />
+                </a>
+                <a
+                  class="button button-secondary"
+                  href="https://github.com/morethan100iq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    class="icon"
+                    src="/assets/icons/github.svg"
+                    alt=""
+                    width="19"
+                    height="19"
+                  />
+                  Мой GitHub
+                </a>
+              </div>
+            </div>
+            <a class="scroll-cue" href="#about"
+              ><span>ЧУТЬ БОЛЬШЕ ОБО МНЕ</span
+              ><span class="scroll-circle"
+                ><img
+                  class="icon"
+                  src="/assets/icons/arrow-down.svg"
+                  alt=""
+                  width="19"
+                  height="19" /></span
+            ></a>
+          </div>
+          <div class="hero-divider">
+            <span>PYTHON / BACKEND / EXPERIMENTS</span
+            ><span class="divider-line"></span
+            ><span class="small-cross">+</span>
+          </div>
+        </section>
+
+        <section
+          class="about-section content-section"
+          id="about"
+          aria-labelledby="about-title"
+        >
+          <div class="section-heading">
+            <span class="section-number">01 /</span>
+            <h2 id="about-title">За пределами ника</h2>
+          </div>
+          <div class="about-grid">
+            <div class="bio-copy">
+              <p class="bio-lead">
+                Мне 17 лет, я учусь в 11 классе<br class="desktop-break" />
+                и занимаюсь <span>программированием.</span>
+              </p>
+              <p>
+                В основном пишу на Python. Делаю Telegram-ботов, работаю с API,
+                PostgreSQL, Docker и Linux-серверами. Иногда экспериментирую с
+                AI-моделями и пытаюсь встраивать их в свои проекты.
+              </p>
+              <p>
+                У меня есть несколько своих проектов, которые я сам пишу,
+                запускаю на сервере, чиню и постепенно улучшаю. Профессиональным
+                разработчиком себя пока не считаю — сейчас просто много учусь,
+                пробую разные технологии и набираюсь опыта.
+              </p>
+              <p>
+                Кроме программирования, сейчас готовлюсь к ЕГЭ и думаю, в каком
+                направлении хочу развиваться дальше.
+              </p>
+            </div>
+            <aside class="frost-card" aria-label="Сейчас в фокусе">
+              <div class="card-topline">
+                <span class="eyebrow">СЕЙЧАС В ФОКУСЕ</span
+                ><img
+                  class="icon frost-icon"
+                  src="/assets/icons/code-2.svg"
+                  alt=""
+                  width="21"
+                  height="21"
+                />
+              </div>
+              <div class="focus-item">
+                <span class="focus-index">01</span>
+                <div>
+                  <h3>Код и свои проекты</h3>
+                  <p>От идеи до Linux-сервера</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <span class="focus-index">02</span>
+                <div>
+                  <h3>Эксперименты с AI</h3>
+                  <p>Пробую встраивать в то, что делаю</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <span class="focus-index">03</span>
+                <div>
+                  <h3>11 класс и ЕГЭ</h3>
+                  <p>Учусь и выбираю, куда дальше</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <img
+                  class="icon frost-icon"
+                  src="/assets/icons/braces.svg"
+                  alt=""
+                  width="16"
+                  height="16"
+                /><span>В процессе. И это нормально.</span>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section
+          class="stack-section content-section"
+          id="stack"
+          aria-labelledby="stack-title"
+        >
+          <div class="section-heading">
+            <span class="section-number">02 /</span>
+            <h2 id="stack-title">Мой набор инструментов</h2>
+            <span class="section-aside">УЧУСЬ НА ПРАКТИКЕ</span>
+          </div>
+          <ul class="tech-list" aria-label="Технологии">
+            <li class="tech-item primary-tech">
+              <img
+                class="icon"
+                src="/assets/icons/python.svg"
+                alt=""
+                width="25"
+                height="25"
+              /><span>Python</span><span class="tech-note">основной</span>
+            </li>
+            <li class="tech-item">
+              <img
+                class="icon"
+                src="/assets/icons/telegram.svg"
+                alt=""
+                width="24"
+                height="24"
+              /><span>Telegram Bots</span>
+            </li>
+            <li class="tech-item">
+              <img
+                class="icon frost-icon"
+                src="/assets/icons/braces.svg"
+                alt=""
+                width="24"
+                height="24"
+              /><span>API</span>
+            </li>
+            <li class="tech-item">
+              <img
+                class="icon"
+                src="/assets/icons/postgresql.svg"
+                alt=""
+                width="25"
+                height="25"
+              /><span>PostgreSQL</span>
+            </li>
+            <li class="tech-item">
+              <img
+                class="icon"
+                src="/assets/icons/docker.svg"
+                alt=""
+                width="27"
+                height="27"
+              /><span>Docker</span>
+            </li>
+            <li class="tech-item">
+              <img
+                class="icon"
+                src="/assets/icons/linux.svg"
+                alt=""
+                width="24"
+                height="24"
+              /><span>Linux</span>
+            </li>
+            <li class="tech-item">
+              <img
+                class="icon frost-icon"
+                src="/assets/icons/sparkles.svg"
+                alt=""
+                width="23"
+                height="23"
+              /><span>AI-модели</span><span class="tech-note">изучаю</span>
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="contact-section content-section"
+          id="contact"
+          aria-labelledby="contact-title"
+        >
+          <div class="contact-copy">
+            <span class="eyebrow">03 / НА СВЯЗИ</span>
+            <h2 id="contact-title">Начнём с <span>привет.</span></h2>
+            <p>Я в Telegram. Мой код — на GitHub.</p>
+          </div>
+          <div class="contact-links">
+            <a
+              class="contact-link"
+              href="https://t.me/ryppo"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img
+                class="icon"
+                src="/assets/icons/telegram.svg"
+                alt=""
+                width="24"
+                height="24" /><span
+                ><span class="contact-name">Telegram</span
+                ><span class="contact-handle">@ryppo</span></span
+              ><img
+                class="icon link-arrow"
+                src="/assets/icons/arrow-up-right.svg"
+                alt=""
+                width="23"
+                height="23"
+            /></a>
+            <a
+              class="contact-link"
+              href="https://github.com/morethan100iq"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img
+                class="icon"
+                src="/assets/icons/github.svg"
+                alt=""
+                width="24"
+                height="24" /><span
+                ><span class="contact-name">GitHub</span
+                ><span class="contact-handle">morethan100iq</span></span
+              ><img
+                class="icon link-arrow"
+                src="/assets/icons/arrow-up-right.svg"
+                alt=""
+                width="23"
+                height="23"
+            /></a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <a class="footer-brand" href="#top">ryppo<span>.</span></a
+        ><span>Пишу код. Набираюсь опыта.</span
+        ><a href="#top" class="back-top"
+          >Наверх
+          <img
+            class="icon"
+            src="/assets/icons/arrow-up-right.svg"
+            alt=""
+            width="15"
+            height="15"
+        /></a>
+      </footer>
+    </div>
+    <div class="frost-controls" hidden>
+      <span class="frost-hint">Проведи по стеклу</span>
+      <button
+        class="frost-toggle"
+        type="button"
+        aria-label="Эффект запотевшего стекла"
+        aria-pressed="true"
+        title="Включить или выключить запотевание"
+      >
+        <img
+          class="icon frost-icon"
+          src="/assets/icons/snowflake.svg"
+          alt=""
+          width="17"
+          height="17"
+        /><span class="frost-state">FROST ON</span>
+      </button>
+    </div>
+  </body>
+</html>

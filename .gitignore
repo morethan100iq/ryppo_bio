@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.sites-runtime/
+artifacts/
+*.tar.gz
+*.tar
+.env*
+!.env.example
