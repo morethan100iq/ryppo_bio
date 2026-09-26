@@ -45,7 +45,7 @@
   <body id="top">
     <a class="skip-link" href="#main">Перейти к содержанию</a>
     <section class="landing" aria-label="Личное био ryppo">
-      <a class="landing-label landing-enter" href="#bio">bio</a>
+      <a class="landing-label landing-enter" href="#bio" lang="en">About Me</a>
       <div class="landing-art" aria-hidden="true">
         <img
           class="landing-image"
@@ -56,7 +56,7 @@
           fetchpriority="high"
         />
       </div>
-      <a class="landing-scroll landing-enter" href="#bio" aria-label="Прокрутить вниз к основной информации" title="Обо мне">
+      <a class="landing-scroll landing-enter" href="#bio" aria-label="Прокрутить вниз к основной информации" title="About Me">
         <img src="./public/assets/icons/arrow-down.svg" alt="" width="26" height="26" />
       </a>
       <a class="landing-brand landing-enter" href="#bio" aria-label="ryppo — перейти к био" translate="no">ryppo.</a>
@@ -67,10 +67,10 @@
           ryppo<span class="wordmark-dot">.</span>
         </a>
         <nav aria-label="Основная навигация">
-          <a href="#about">Обо мне</a>
-          <a href="#stack">Стек</a>
-          <a href="#projects">Проекты</a>
-          <a href="#contact">Контакты</a>
+          <a href="#about" lang="en">About Me</a>
+          <a href="#stack" lang="en">Stack</a>
+          <a href="#projects" lang="en">Projects</a>
+          <a href="#contact" lang="en">Contacts</a>
         </nav>
       </header>
 
@@ -118,7 +118,7 @@
           aria-labelledby="about-title"
         >
           <div class="section-heading reveal">
-            <h2 id="about-title">Обо мне</h2>
+            <h2 id="about-title" lang="en">About Me</h2>
           </div>
           <div class="about-grid">
             <div class="bio-copy">
@@ -129,18 +129,18 @@
               <p class="reveal" style="--reveal-delay: 70ms">
                 В основном пишу на Python (в том числе на FastAPI) и
                 JavaScript. Делаю Telegram-ботов, работаю с API,
-                PostgreSQL, Docker и Linux-серверами. Иногда экспериментирую с
-                AI-моделями и пытаюсь встраивать их в свои проекты.
+                PostgreSQL, Docker и Linux-серверами.
               </p>
               <p class="reveal" style="--reveal-delay: 140ms">
-                У меня есть несколько своих проектов, которые я сам пишу,
-                запускаю на сервере, чиню и постепенно улучшаю. Профессиональным
-                разработчиком себя пока не считаю — сейчас просто много учусь,
-                пробую разные технологии и набираюсь опыта.
+                У меня есть свои проекты, которые я придумал сам.
+                Мне нравится делать игры, например HurmoBot,
+                или полезных ботов, как бот для скачивания видео из
+                TikTok, YouTube и т.д.
               </p>
               <p class="reveal" style="--reveal-delay: 210ms">
-                Кроме программирования, сейчас готовлюсь к ЕГЭ и думаю, в каком
-                направлении хочу развиваться дальше.
+                Я бы хотел делать бесплатные решения, за которые
+                крупные компании берут деньги.
+                Простейший комфорт не должен стоить денег.
               </p>
             </div>
             <section
@@ -149,7 +149,7 @@
               aria-labelledby="stack-title"
             >
               <div class="stack-heading reveal">
-                <h3 id="stack-title">Мой стек</h3>
+                <h3 id="stack-title" lang="en">Stack</h3>
               </div>
               <ul class="tech-list" aria-label="Технологии">
                 <li class="tech-item reveal">
@@ -213,55 +213,54 @@
           aria-labelledby="projects-title"
         >
           <div class="section-heading reveal">
-            <h2 id="projects-title">Свои проекты</h2>
-            <p class="section-note"></p>
+            <h2 id="projects-title" lang="en">Projects</h2>
           </div>
           <ul class="project-list" aria-label="Мои проекты">
             <li class="reveal">
-              <!-- TODO(content): confirm HurmoBot description, stack, status and public URL. -->
-              <article class="project-card" aria-labelledby="hurmobot-title">
+              <a class="project-card" href="https://t.me/HurmaGameBot" target="_blank" rel="noopener noreferrer" aria-labelledby="hurmobot-title">
                 <div class="project-thumb project-thumb-hurma">
                   <img src="./public/assets/projects/hurmobot/hurma_main.webp" alt="Обложка HurmoBot с хурмой и названием бота" width="640" height="640" loading="lazy" decoding="async" />
                 </div>
                 <div class="project-top">
-                  <span class="project-kind">TG-бот</span>
-                  <strong class="project-status project-status-unknown">АКТИВЕН</strong>
+                  <span class="project-kind">Telegram-бот</span>
+                  <span class="project-status project-status-live">активен</span>
+                  <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
                 </div>
                 <h3 class="project-name" id="hurmobot-title" translate="no">HurmoBot</h3>
-                <p class="project-desc"><strong class="content-placeholder">Игровой бот с хурмой. Собираешь разные фото хурмы разной редкости, есть рынок, трейды, таблица лидеров, крафты.</strong></p>
-                <div class="project-bottom"><strong class="project-tech content-placeholder">TG-бот</strong><strong class="project-source content-placeholder">https://t.me/HurmaGameBot</strong></div>
-              </article>
+                <p class="project-desc">Игровой бот с хурмой. Собираешь фото хурмы разной редкости. Есть рынок, трейды, таблица лидеров и крафты.</p>
+                <div class="project-bottom"><span class="project-tech">Telegram-бот</span><span class="project-source">Telegram</span></div>
+              </a>
             </li>
             <li class="reveal" style="--reveal-delay: 80ms">
-              <!-- TODO(content): add a repository link only after confirming it is public. -->
-              <article class="project-card" aria-labelledby="lychevpn-title">
+              <a class="project-card" href="https://t.me/LycheVPNbot" target="_blank" rel="noopener noreferrer" aria-labelledby="lychevpn-title">
                 <div class="project-thumb">
                   <img src="./public/assets/projects/lychevpn/lyche2.webp" alt="Экран приветствия «Личи VPN»" width="960" height="543" loading="lazy" decoding="async" />
                 </div>
                 <div class="project-top">
                   <span class="project-kind">VPN-сервис</span>
-                  <span class="project-status project-status-development">АРХИВ</span>
+                  <span class="project-status project-status-archived">архив</span>
+                  <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
                 </div>
                 <h3 class="project-name" id="lychevpn-title" translate="no">LycheVPN</h3>
-                <p class="project-desc">VPN на связке 3X-UI + VLESS + XTLS-Reality с TG-ботом и MiniApp.</p>
-                <p class="project-detail">Запустил, но прогорел и положил в архив😭</p>
-                <div class="project-bottom"><span class="project-tech">TG-Bot</span><strong class="project-source content-placeholder">https://t.me/LycheVPNbot</strong></div>
-              </article>
+                <p class="project-desc">VPN на связке 3X-UI + VLESS + XTLS-Reality с Telegram-ботом и мини-приложением.</p>
+                <p class="project-detail">Запустил, но прогорел и положил в архив 😭</p>
+                <div class="project-bottom"><span class="project-tech">Telegram-бот</span><span class="project-source">Telegram</span></div>
+              </a>
             </li>
             <li class="reveal" style="--reveal-delay: 160ms">
-              <!-- TODO(content): confirm deployment status and public bot/repository URL. -->
-              <article class="project-card" aria-labelledby="video-bot-title">
+              <a class="project-card" href="https://t.me/l00iq_bot" target="_blank" rel="noopener noreferrer" aria-labelledby="video-bot-title">
                 <div class="project-thumb project-thumb-video">
                   <img src="./public/assets/projects/video-downloader-bot/tt_main.webp" alt="Красный робот с кнопкой воспроизведения — обложка бота для скачивания видео" width="640" height="640" loading="lazy" decoding="async" />
                 </div>
                 <div class="project-top">
-                  <span class="project-kind">TG-бот</span>
-                  <strong class="project-status project-status-unknown">АКТИВЕН</strong>
+                  <span class="project-kind">Telegram-бот</span>
+                  <span class="project-status project-status-live">активен</span>
+                  <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
                 </div>
                 <h3 class="project-name" id="video-bot-title">Бот для скачивания видео</h3>
-                <p class="project-desc">Скачивает видео из TikTok, YouTube, Instagram, VK, Pinterest без водяного знака или .mp3</p>
-                <div class="project-bottom"><span class="project-tech">Python</span><strong class="project-source content-placeholder">https://t.me/l00iq_bot</strong></div>
-              </article>
+                <p class="project-desc">Скачивает видео из TikTok, YouTube, Instagram, VK и Pinterest без водяного знака или сохраняет звук в MP3.</p>
+                <div class="project-bottom"><span class="project-tech">Python</span><span class="project-source">Telegram</span></div>
+              </a>
             </li>
             <li class="reveal">
               <a
@@ -270,8 +269,8 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-top"><span class="project-kind">WEB</span>
-                <strong class="project-status project-status-unknown">АРХИВ</strong>
+                <div class="project-top"><span class="project-kind">Веб-сайт</span>
+                <span class="project-status project-status-archived">архив</span>
                 <img
                   class="icon link-arrow"
                   src="./public/assets/icons/arrow-up-right.svg"
@@ -282,7 +281,7 @@
                 </div>
                 <h3 class="project-name">pro100code</h3>
                 <p class="project-desc">Сайт для тех, кто готовится к экзамену по информатике.</p>
-                <p class="project-detail"><strong class="content-placeholder">Есть несколько заданий по теории для ЕГЭ. Не законченный проект, нужно добавить заданий прямо из банка ФИПИ.</strong></p>
+                <p class="project-detail">Есть несколько заданий по теории для ЕГЭ. Проект не закончен: нужно добавить задания из банка ФИПИ.</p>
                 <div class="project-bottom"><span class="project-tech">JavaScript</span><span class="project-source">GitHub</span></div>
               </a>
             </li>
@@ -293,8 +292,8 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-top"><span class="project-kind">WEB</span>
-                <strong class="project-status project-status-unknown">АРХИВ</strong>
+                <div class="project-top"><span class="project-kind">Веб-сайт</span>
+                <span class="project-status project-status-archived">архив</span>
                 <img
                   class="icon link-arrow"
                   src="./public/assets/icons/arrow-up-right.svg"
@@ -304,7 +303,7 @@
                 />
                 </div>
                 <h3 class="project-name">wishlist</h3>
-                <p class="project-desc">Список желаний, красивый дизайн, приятно пользоваться. Перестал заниматься им</p>
+                <p class="project-desc">Список желаний, красивый дизайн, приятно пользоваться. Перестал заниматься им.</p>
                 <div class="project-bottom"><span class="project-tech">HTML</span><span class="project-source">GitHub</span></div>
               </a>
             </li>
@@ -317,8 +316,7 @@
           aria-labelledby="contact-title"
         >
           <div class="contact-copy reveal">
-            <p class="eyebrow">Контакты</p>
-            <h2 id="contact-title">Начнём с <span>«привет».</span></h2>
+            <h2 id="contact-title" lang="en">Contacts</h2>
             <p>Отвечаю в Telegram</p>
           </div>
           <div class="contact-links reveal" style="--reveal-delay: 120ms">
