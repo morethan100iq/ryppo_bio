@@ -7,7 +7,22 @@ for (const file of ["styles.css", "main.js"]) {
 }
 await cp("public", "dist", { recursive: true });
 const source = await readFile("index.html", "utf8");
-await writeFile("dist/index.html", source.replaceAll('="./public/', '="./'));
+let builtHtml = source.replaceAll('="./public/', '="./');
+if (process.env.SITE_URL) {
+  const siteUrl = new URL(process.env.SITE_URL);
+  if (!/^https?:$/.test(siteUrl.protocol) || siteUrl.username || siteUrl.password) {
+    throw new Error("SITE_URL must be a public http(s) URL without credentials.");
+  }
+  siteUrl.search = "";
+  siteUrl.hash = "";
+  if (!siteUrl.pathname.endsWith("/")) siteUrl.pathname += "/";
+  const escapeAttribute = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
+  builtHtml = builtHtml.replaceAll('content="./assets/og-ryppo.png"', `content="${escapeAttribute(new URL("assets/og-ryppo.png", siteUrl).href)}"`);
+  builtHtml = builtHtml.replace("</head>", `  <link rel="canonical" href="${escapeAttribute(siteUrl.href)}" />\n    <meta property="og:url" content="${escapeAttribute(siteUrl.href)}" />\n  </head>`);
+} else {
+  console.log("SITE_URL is not set: social image URLs stay relative until a public address is chosen.");
+}
+await writeFile("dist/index.html", builtHtml);
 const html = await readFile("dist/index.html", "utf8");
 const output = resolve("dist");
 const refs = new Set();
@@ -23,6 +38,8 @@ function addReference(url, parent) {
 for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   addReference(match[1], resolve(output, "index.html"));
 }
+// Social preview metadata is not covered by the src/href scan.
+addReference("./assets/og-ryppo.png", resolve(output, "index.html"));
 // Проверяем и ES-модульные импорты внутри локальных скриптов
 // (например, liquid-glass-init.js -> liquid-glass.js).
 for (const script of [...refs]) {

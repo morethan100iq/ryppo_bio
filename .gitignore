@@ -2,6 +2,8 @@ node_modules/
 dist/
 .sites-runtime/
 artifacts/
+# Local source artwork; only optimized project previews belong in Git.
+pic/
 *.tar.gz
 *.tar
 .env*
