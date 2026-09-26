@@ -1,0 +1,8 @@
+/* Inter Black, SIL Open Font License 1.1; subset for the live ryppo lettering. */
+@font-face {
+  font-family: "Ryppo Ice";
+  src: url("./inter-ryppo-900.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}

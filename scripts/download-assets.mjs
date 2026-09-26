@@ -35,10 +35,6 @@ const downloads = [
     `https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/${name === "code-2" ? "code-xml" : name}.svg`,
     `public/assets/icons/${name}.svg`,
   ]),
-  [
-    "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
-    "public/assets/fonts/OFL-Manrope.txt",
-  ],
 ];
 await Promise.all(
   downloads.map(async ([url, file]) => {
@@ -48,35 +44,37 @@ await Promise.all(
   }),
 );
 
-const cssResponse = await fetch(
-  "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap",
-  {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
-    },
-  },
-);
-if (!cssResponse.ok) throw new Error("Could not fetch Manrope stylesheet");
-const css = await cssResponse.text();
-let localCSS = css;
-const urls = [
-  ...new Set(
-    [...css.matchAll(/url\((https:[^)]+)\)/g)].map((match) => match[1]),
-  ),
+// Geist Mono Regular / SemiBold с Fontsource CDN, SIL Open Font License 1.1.
+const fonts = [
+  [
+    "latin-ext",
+    "https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-ext-600-normal.woff2",
+    "geist-mono-latin-ext.woff2",
+    "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
+  ],
+  [
+    "latin",
+    "https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-600-normal.woff2",
+    "geist-mono-latin.woff2",
+    "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+  ],
 ];
-for (const [i, url] of urls.entries()) {
-  const result = await fetch(url);
-  if (!result.ok) throw new Error(`Font download failed: ${url}`);
-  const extension = new URL(url).pathname.split(".").pop();
-  const filename = `manrope-${i}.${extension}`;
-  await writeFile(
-    `public/assets/fonts/${filename}`,
-    Buffer.from(await result.arrayBuffer()),
-  );
-  localCSS = localCSS.replaceAll(url, `/assets/fonts/${filename}`);
+let fontCSS =
+  "/* Geist Mono (400, 600) — https://vercel.com/font, SIL Open Font License 1.1.\n   Локальные файлы, внешних запросов нет. */\n";
+for (const [subset, url, filename, range] of fonts) {
+  for (const weight of [400, 600]) {
+    const fontURL = url.replace("-600-", `-${weight}-`);
+    const fontFile = weight === 600 ? filename : filename.replace(".woff2", `-${weight}.woff2`);
+    const result = await fetch(fontURL);
+    if (!result.ok) throw new Error(`Font download failed: ${fontURL}`);
+    await writeFile(
+      `public/assets/fonts/${fontFile}`,
+      Buffer.from(await result.arrayBuffer()),
+    );
+    fontCSS += `/* ${subset} */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: ${weight};\n  font-display: swap;\n  src: url(./${fontFile}) format('woff2');\n  unicode-range: ${range};\n}\n`;
+  }
 }
-await writeFile("public/assets/fonts/manrope.css", localCSS);
+await writeFile("public/assets/fonts/geist-mono.css", fontCSS);
 console.log(
-  `Downloaded ${downloads.length} icon/license assets and ${urls.length} font subsets.`,
+  `Downloaded ${downloads.length} icon/license assets and ${fonts.length * 2} font files.`,
 );
