@@ -12,6 +12,7 @@ const types = {
   ".png": "image/png",
   ".webp": "image/webp",
   ".woff2": "font/woff2",
+  ".ttf": "font/ttf",
   ".ico": "image/x-icon",
 };
 const port = Number(process.env.PORT || 5173);

@@ -38,108 +38,87 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
     <link rel="stylesheet" href="./public/assets/fonts/geist-mono.css" />
+    <link rel="stylesheet" href="./public/assets/fonts/tt-travels-next.css" />
+    <link rel="stylesheet" href="./public/assets/fonts/cygre.css" />
     <link rel="stylesheet" href="./public/assets/fonts/unbounded.css" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="preload" as="image" href="./public/assets/ryppo-landing.png" />
   </head>
   <body id="top">
     <a class="skip-link" href="#main">Перейти к содержанию</a>
-    <section class="landing" aria-label="Личное био ryppo">
-      <a class="landing-label landing-enter" href="#bio" lang="en">About Me</a>
-      <div class="landing-art" aria-hidden="true">
-        <img
-          class="landing-image"
-          src="./public/assets/ryppo-landing.png"
-          alt=""
-          width="1672"
-          height="941"
-          fetchpriority="high"
-        />
-      </div>
-      <a class="landing-scroll landing-enter" href="#bio" aria-label="Прокрутить вниз к основной информации" title="About Me">
-        <img src="./public/assets/icons/arrow-down.svg" alt="" width="26" height="26" />
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="ryppo — в начало" translate="no">
+        ryppo<span class="wordmark-dot">.</span>
       </a>
-      <a class="landing-brand landing-enter" href="#bio" aria-label="ryppo — перейти к био" translate="no">ryppo.</a>
-    </section>
-    <div class="page-shell" id="bio">
-      <header class="site-header">
-        <a class="wordmark" href="#top" aria-label="ryppo — в начало">
-          ryppo<span class="wordmark-dot">.</span>
-        </a>
-        <nav aria-label="Основная навигация">
-          <a href="#about" lang="en">About Me</a>
-          <a href="#stack" lang="en">Stack</a>
-          <a href="#projects" lang="en">Projects</a>
-          <a href="#contact" lang="en">Contacts</a>
-        </nav>
-      </header>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню" hidden>
+        <span></span><span></span>
+      </button>
+      <nav id="site-nav" aria-label="Основная навигация">
+        <a href="#about">О себе</a>
+        <a href="#projects">Проекты</a>
+        <a href="#stack">Стек</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </header>
 
-      <main id="main" tabindex="-1">
-        <section class="profile-intro" aria-labelledby="hero-title">
-          <div class="hero-intro">
-              <p class="eyebrow reveal">Личное портфолио <span aria-hidden="true">/</span> 17 лет</p>
-              <div class="intro-title reveal">
-                <h1 id="hero-title"><span class="hero-name">Никита</span> <span class="hero-alias"><span class="hero-divider">/</span> <span class="hero-handle" translate="no">ryppo</span></span></h1>
-              </div>
-              <p class="intro-description reveal">Пишу на Python и JavaScript.<br />Делаю Telegram-ботов и развиваю свои проекты.</p>
+    <main id="main" tabindex="-1">
+      <section class="landing" aria-labelledby="hero-title">
+        <div class="landing-art" aria-hidden="true">
+          <img
+            class="landing-image"
+            src="./public/assets/ryppo-landing.png"
+            alt=""
+            width="1672"
+            height="941"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-glow" aria-hidden="true"></div>
+
+        <div class="hero-layout">
+          <h1 class="visually-hidden" id="hero-title">Никита / ryppo — Python и Telegram-боты</h1>
+          <div class="hero-bottom">
+            <a class="landing-scroll" href="#about" aria-label="Перейти к разделу «О себе»">
+              <span class="section-number" aria-hidden="true">01 <span>/</span></span>
+              <span>О себе</span>
+              <img src="./public/assets/icons/arrow-down.svg" alt="" width="18" height="18" />
+            </a>
+            <p class="hero-caption">Никита<span>Python и Telegram-боты</span></p>
           </div>
-              <div class="hero-actions reveal" style="--reveal-delay: 120ms">
-                <p class="availability"><span aria-hidden="true"></span>открыт для проектов</p>
-                <a
-                  class="button button-primary"
-                  href="https://t.me/ryppo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Написать в Telegram
-                  <img
-                    class="icon link-arrow"
-                    src="./public/assets/icons/arrow-up-right.svg"
-                    alt=""
-                    width="17"
-                    height="17"
-                  />
-                </a>
-                <a
-                  class="button button-secondary"
-                  href="https://github.com/morethan100iq"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                  <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="17" height="17" />
-                </a>
-              </div>
-        </section>
+        </div>
+      </section>
 
+      <div class="page-shell" id="bio">
+        <div class="section-decoration" aria-hidden="true" translate="no">
+          <span class="decoration-wordmark">ryppo.</span>
+          <span class="decoration-system">RYPPO SYSTEM</span>
+        </div>
         <section
           class="about-section content-section"
           id="about"
           aria-labelledby="about-title"
         >
           <div class="section-heading reveal">
-            <h2 id="about-title" lang="en">About Me</h2>
+            <span class="section-number" aria-hidden="true">01 <span>/</span></span>
+            <h2 class="section-title" id="about-title">О себе</h2>
           </div>
           <div class="about-grid">
             <div class="bio-copy">
-              <p class="bio-lead reveal">
-                Мне 17 лет, я учусь в 11 классе
-                и занимаюсь <span>программированием.</span>
+              <p class="reveal">
+                Мне 17 лет, учусь в 11 классе
+                и занимаюсь программированием.
               </p>
               <p class="reveal" style="--reveal-delay: 70ms">
-                В основном пишу на Python (в том числе на FastAPI) и
-                JavaScript. Делаю Telegram-ботов, работаю с API,
-                PostgreSQL, Docker и Linux-серверами.
+                Пишу на Python и JavaScript. Делаю Telegram-ботов,
+                работаю с FastAPI, PostgreSQL, Docker и Linux.
               </p>
               <p class="reveal" style="--reveal-delay: 140ms">
-                У меня есть свои проекты, которые я придумал сам.
-                Мне нравится делать игры, например HurmoBot,
-                или полезных ботов, как бот для скачивания видео из
-                TikTok, YouTube и т.д.
+                Придумываю свои проекты: в HurmoBot собираешь фото
+                хурмы и обмениваешься ими, а бот для скачивания видео
+                сохраняет ролики.
               </p>
               <p class="reveal" style="--reveal-delay: 210ms">
-                Я бы хотел делать бесплатные решения, за которые
-                крупные компании берут деньги.
+                Хочу делать простые и полезные решения доступными бесплатно.
                 Простейший комфорт не должен стоить денег.
               </p>
             </div>
@@ -148,8 +127,9 @@
               id="stack"
               aria-labelledby="stack-title"
             >
-              <div class="stack-heading reveal">
-                <h3 id="stack-title" lang="en">Stack</h3>
+              <div class="section-heading reveal">
+                <span class="section-number" aria-hidden="true">02 <span>/</span></span>
+                <h3 class="section-title" id="stack-title">Стек</h3>
               </div>
               <ul class="tech-list" aria-label="Технологии">
                 <li class="tech-item reveal">
@@ -213,28 +193,37 @@
           aria-labelledby="projects-title"
         >
           <div class="section-heading reveal">
-            <h2 id="projects-title" lang="en">Projects</h2>
+            <span class="section-number" aria-hidden="true">03 <span>/</span></span>
+            <h2 class="section-title" id="projects-title">Проекты</h2>
           </div>
-          <ul class="project-list" aria-label="Мои проекты">
-            <li class="reveal">
-              <a class="project-card" href="https://t.me/HurmaGameBot" target="_blank" rel="noopener noreferrer" aria-labelledby="hurmobot-title">
-                <div class="project-thumb project-thumb-hurma">
-                  <img src="./public/assets/projects/hurmobot/hurma_main.webp" alt="Обложка HurmoBot с хурмой и названием бота" width="640" height="640" loading="lazy" decoding="async" />
-                </div>
-                <div class="project-top">
-                  <span class="project-kind">Telegram-бот</span>
-                  <span class="project-status project-status-live">активен</span>
-                  <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
-                </div>
-                <h3 class="project-name" id="hurmobot-title" translate="no">HurmoBot</h3>
-                <p class="project-desc">Игровой бот с хурмой. Собираешь фото хурмы разной редкости. Есть рынок, трейды, таблица лидеров и крафты.</p>
-                <div class="project-bottom"><span class="project-tech">Telegram-бот</span><span class="project-source">Telegram</span></div>
+          <article class="featured-project reveal" aria-labelledby="hurmobot-title">
+            <div class="featured-media">
+              <img src="./public/assets/projects/hurmobot/hurma_main.webp" alt="Обложка HurmoBot с хурмой и названием бота" width="960" height="540" loading="lazy" decoding="async" />
+            </div>
+            <div class="featured-copy">
+              <div class="featured-meta">
+                <span class="project-kind">Избранный проект</span>
+                <span class="project-status project-status-live" translate="no">ACTIVE</span>
+              </div>
+              <h3 class="featured-title" id="hurmobot-title" translate="no">HurmoBot</h3>
+              <p class="project-desc">Игровой Telegram-бот с хурмой. Собираешь фото разной редкости, обмениваешься ими и крафтишь новые. Есть рынок и таблица лидеров.</p>
+              <ul class="featured-stack" aria-label="Стек HurmoBot" translate="no">
+                <li>Python</li>
+                <li>PostgreSQL</li>
+                <li>Telegram API</li>
+                <li>Docker</li>
+              </ul>
+              <a class="featured-link" href="https://t.me/HurmaGameBot" target="_blank" rel="noopener noreferrer" aria-label="Открыть проект HurmoBot в Telegram">
+                Открыть проект
+                <svg class="icon link-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7" /></svg>
               </a>
-            </li>
+            </div>
+          </article>
+          <ul class="project-list" aria-label="Другие проекты">
             <li class="reveal" style="--reveal-delay: 80ms">
               <a class="project-card" href="https://t.me/LycheVPNbot" target="_blank" rel="noopener noreferrer" aria-labelledby="lychevpn-title">
                 <div class="project-thumb">
-                  <img src="./public/assets/projects/lychevpn/lyche2.webp" alt="Экран приветствия «Личи VPN»" width="960" height="543" loading="lazy" decoding="async" />
+                  <img src="./public/assets/projects/lychevpn/lyche2.webp" alt="Обложка LycheVPN с розовым личи и названием проекта" width="960" height="540" loading="lazy" decoding="async" />
                 </div>
                 <div class="project-top">
                   <span class="project-kind">VPN-сервис</span>
@@ -250,7 +239,7 @@
             <li class="reveal" style="--reveal-delay: 160ms">
               <a class="project-card" href="https://t.me/l00iq_bot" target="_blank" rel="noopener noreferrer" aria-labelledby="video-bot-title">
                 <div class="project-thumb project-thumb-video">
-                  <img src="./public/assets/projects/video-downloader-bot/tt_main.webp" alt="Красный робот с кнопкой воспроизведения — обложка бота для скачивания видео" width="640" height="640" loading="lazy" decoding="async" />
+                  <img src="./public/assets/projects/video-downloader-bot/tt_main.webp" alt="Красный робот с кнопкой воспроизведения — обложка бота для скачивания видео" width="960" height="540" loading="lazy" decoding="async" />
                 </div>
                 <div class="project-top">
                   <span class="project-kind">Telegram-бот</span>
@@ -316,7 +305,10 @@
           aria-labelledby="contact-title"
         >
           <div class="contact-copy reveal">
-            <h2 id="contact-title" lang="en">Contacts</h2>
+            <div class="section-heading">
+              <span class="section-number" aria-hidden="true">04 <span>/</span></span>
+              <h2 class="section-title" id="contact-title">Контакты</h2>
+            </div>
             <p>Отвечаю в Telegram</p>
           </div>
           <div class="contact-links reveal" style="--reveal-delay: 120ms">
@@ -350,8 +342,9 @@
             /></a>
           </div>
         </section>
-      </main>
-
+      </div>
+    </main>
+    <div class="page-shell">
       <footer class="site-footer reveal">
         <a class="footer-brand" href="#top">ryppo<span>.</span></a
         ><a href="#top" class="back-top"
@@ -365,6 +358,6 @@
         /></a>
       </footer>
     </div>
-    <script src="./public/assets/reveal.js" defer></script>
+    <script src="./main.js" defer></script>
   </body>
 </html>

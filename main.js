@@ -1,263 +1,184 @@
-// Обычный скрипт (не module): корректно работает через Live Server,
-// http-сервер и при прямом открытии index.html через file://.
+// Progressive enhancement: all navigation links stay visible without JavaScript.
+(function () {
+  "use strict";
+  const header = document.querySelector(".site-header");
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("#site-nav");
+  if (!header || !toggle || !nav) return;
+
+  const mobile = window.matchMedia("(max-width: 700px)");
+  let open = false;
+  let lastHeaderFocus = null;
+
+  document.addEventListener("focusin", (event) => {
+    lastHeaderFocus = header.contains(event.target) ? event.target : null;
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!header.contains(event.target)) lastHeaderFocus = null;
+  });
+
+  function setOpen(next, restoreFocus = false) {
+    open = next && mobile.matches;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+    nav.classList.toggle("is-open", open);
+    if (open) nav.querySelector("a").focus({ preventScroll: true });
+    else if (restoreFocus) toggle.focus({ preventScroll: true });
+  }
+
+  toggle.addEventListener("click", () => setOpen(!open));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && open) {
+      event.preventDefault();
+      setOpen(false, true);
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (open && !header.contains(event.target)) {
+      setOpen(false, nav.contains(document.activeElement));
+    }
+  });
+  header.addEventListener("focusout", (event) => {
+    if (open && !header.contains(event.relatedTarget)) setOpen(false);
+  });
+  nav.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href^='#']");
+    if (!link || !open) return;
+    setOpen(false);
+    // Preserve native hash navigation while moving focus out of the hidden menu.
+    const destination = document.querySelector(link.getAttribute("href"));
+    if (destination) {
+      destination.setAttribute("tabindex", "-1");
+      destination.focus({ preventScroll: true });
+      destination.addEventListener("blur", () => destination.removeAttribute("tabindex"), { once: true });
+    }
+  });
+  mobile.addEventListener("change", () => {
+    // A media query can hide the focused control before this callback runs.
+    const active = document.activeElement === document.body
+      ? lastHeaderFocus
+      : document.activeElement;
+    setOpen(false, mobile.matches && nav.contains(active));
+    if (!mobile.matches && active === toggle) nav.querySelector("a").focus({ preventScroll: true });
+  });
+
+  toggle.hidden = false;
+  header.classList.add("menu-ready");
+})();
+
+// One-time entrances and event-driven scroll details. No animation dependencies.
 (function () {
   "use strict";
 
-  // Keep the opening screen clean; reveal the frost control with the bio.
-  const landing = document.querySelector(".landing");
-  if (landing && "IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => {
-      document.body.classList.toggle("at-landing", entry.intersectionRatio > 0.1);
-    }, { threshold: [0, 0.1] }).observe(landing);
-  } else {
-    document.body.classList.remove("at-landing");
-  }
+  var pageTitle = document.title;
+  document.addEventListener("visibilitychange", function () {
+    document.title = document.hidden ? "До встречи / ryppo" : pageTitle;
+  });
 
-  var art = document.querySelector("#ice-art");
-  if (art) {
-    // Если картинка не загрузилась (нет файла / битый путь) — прячем
-    // битый <img>, чтобы был виден текстовый фолбэк RYPPO.
-    art.addEventListener("error", function () {
-      art.style.display = "none";
-      if (art.parentElement) art.parentElement.classList.remove("has-ice-art");
+  var items = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  var observer;
+  function showAll() {
+    document.documentElement.classList.remove("reveal-ready");
+    items.forEach(function (el) {
+      el.classList.add("revealed");
     });
-    const showArt = () => {
-      // naturalWidth === 0 => файл не загрузился, фолбэк остаётся.
-      if (!art.naturalWidth) return;
-      art.classList.add("loaded");
-      if (art.parentElement) art.parentElement.classList.add("has-ice-art");
-    };
-    art.addEventListener("load", showArt);
-    // Для закэшированных картинок событие load может уже произойти.
-    if (art.complete) showArt();
+    if (observer) observer.disconnect();
   }
-
-  var canvas = document.querySelector("#condensation");
-  if (!canvas) return;
-  var context = null;
-  try {
-    context = canvas.getContext("2d");
-  } catch {
-    context = null;
-  }
-  // Без canvas-контекста страница остаётся полностью рабочей,
-  // просто без эффекта конденсата.
-  if (!context) return;
-
-  var controls = document.querySelector(".frost-controls");
-  var toggle = document.querySelector(".frost-toggle");
-  var hint = document.querySelector(".frost-hint");
-  if (!controls || !toggle) return;
-
-  var fogTexture = document.createElement("canvas");
-  var fogMask = document.createElement("canvas");
-  var maskContext = fogMask.getContext("2d");
-  if (!maskContext) return;
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let enabled = true;
-  let width = 0;
-  let height = 0;
-  let scale = 1;
-  let frame = 0;
-  let previousPoint = null;
-  let lastPoint = null;
-  let lastMove = 0;
-  let hintTimer;
-
-  try {
-    const saved = localStorage.getItem("ryppo-frost");
-    if (saved !== null) enabled = saved === "on";
-  } catch {
-    /* The effect also works without browser storage. */
-  }
-
-  function paintCondensation() {
-    context.globalCompositeOperation = "source-over";
-    const leftMist = context.createRadialGradient(
-      -width * 0.12,
-      height * 0.38,
-      0,
-      -width * 0.12,
-      height * 0.38,
-      width * 0.56,
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+    showAll();
+  } else {
+    observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -24px 0px" },
     );
-    leftMist.addColorStop(0, "rgba(153,202,220,.16)");
-    leftMist.addColorStop(0.5, "rgba(114,173,198,.045)");
-    leftMist.addColorStop(1, "rgba(101,159,181,0)");
-    context.fillStyle = leftMist;
-    context.fillRect(0, 0, width, height);
-    const rightMist = context.createRadialGradient(
-      width * 1.09,
-      height * 0.35,
-      0,
-      width * 1.09,
-      height * 0.35,
-      width * 0.5,
-    );
-    rightMist.addColorStop(0, "rgba(143,204,226,.18)");
-    rightMist.addColorStop(0.65, "rgba(125,184,207,.04)");
-    rightMist.addColorStop(1, "rgba(101,159,181,0)");
-    context.fillStyle = rightMist;
-    context.fillRect(0, 0, width, height);
-    context.globalAlpha = 1;
+
+    items.forEach(function (el) {
+      observer.observe(el);
+    });
+    document.documentElement.classList.add("reveal-ready");
   }
 
-  function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    scale = Math.min(window.devicePixelRatio || 1, 1.5);
-    canvas.width = Math.round(width * scale);
-    canvas.height = Math.round(height * scale);
-    context.setTransform(scale, 0, 0, scale, 0, 0);
-    paintCondensation();
+  // Keyboard focus must never land in invisible content.
+  document.addEventListener("focusin", function (event) {
+    var item = event.target.closest(".reveal");
+    if (!item) return;
+    item.classList.add("revealed");
+    if (observer) observer.unobserve(item);
+  });
 
-    // Small, uneven condensation highlights stay at the edges to keep the bio clear.
-    let seed = 37;
-    const random = () => {
-      seed = (seed * 16807) % 2147483647;
-      return (seed - 1) / 2147483646;
-    };
-    for (let i = 0; i < Math.min(width * 0.6, 750); i++) {
-      const edgeDistance = random() ** 3 * width * 0.24;
-      const x = random() > 0.5 ? edgeDistance : width - edgeDistance;
-      const y = random() * height;
-      const radius = 0.3 + random() * 1.25;
-      context.fillStyle = `rgba(174,220,239,${0.045 + random() * 0.1})`;
-      context.beginPath();
-      context.ellipse(
-        x,
-        y,
-        radius,
-        radius * (1 + random() * 0.5),
-        0,
-        0,
-        Math.PI * 2,
-      );
-      context.fill();
-    }
-    fogTexture.width = fogMask.width = canvas.width;
-    fogTexture.height = fogMask.height = canvas.height;
-    fogTexture.getContext("2d").drawImage(canvas, 0, 0);
-    maskContext.setTransform(scale, 0, 0, scale, 0, 0);
-    maskContext.fillStyle = "white";
-    maskContext.fillRect(0, 0, width, height);
+  var landing = document.querySelector(".landing");
+  var landingImage = document.querySelector(".landing-image");
+  var header = document.querySelector(".site-header");
+  var footer = document.querySelector(".site-footer");
+  var progress = document.createElement("div");
+  progress.className = "scroll-progress";
+  progress.setAttribute("aria-hidden", "true");
+  document.body.appendChild(progress);
+
+  // Keep the original footer link and native anchor navigation intact.
+  var backTop = document.createElement("a");
+  backTop.className = "scroll-top";
+  backTop.href = "#top";
+  backTop.setAttribute("aria-label", "Наверх");
+  backTop.title = "Наверх";
+  document.body.appendChild(backTop);
+  var frame = 0;
+  var landingHeight = 0;
+  var scrollRange = 0;
+  var heroShift = -1;
+
+  function measure() {
+    landingHeight = landing ? landing.offsetHeight : 0;
+    scrollRange = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    scheduleUpdate();
   }
 
-  function renderFog() {
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    context.globalCompositeOperation = "source-over";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(fogTexture, 0, 0);
-    context.globalCompositeOperation = "destination-in";
-    context.drawImage(fogMask, 0, 0);
-    context.globalCompositeOperation = "source-over";
-    context.setTransform(scale, 0, 0, scale, 0, 0);
-  }
-
-  function erasePoint(x, y) {
-    const radius = width < 760 ? 60 : 105;
-    const brush = maskContext.createRadialGradient(
-      x,
-      y,
-      radius * 0.1,
-      x,
-      y,
-      radius,
-    );
-    brush.addColorStop(0, "rgba(0,0,0,.97)");
-    brush.addColorStop(0.5, "rgba(0,0,0,.78)");
-    brush.addColorStop(1, "rgba(0,0,0,0)");
-    maskContext.fillStyle = brush;
-    maskContext.fillRect(x - radius, y - radius, radius * 2, radius * 2);
-  }
-
-  function erase() {
+  function updateScroll() {
     frame = 0;
-    if (!enabled || !lastPoint) return;
-    const { x, y } = lastPoint;
-    maskContext.globalCompositeOperation = "destination-out";
-    if (previousPoint) {
-      const distance = Math.hypot(x - previousPoint.x, y - previousPoint.y);
-      const steps = Math.min(20, Math.ceil(distance / 22));
-      for (let i = 1; i < steps; i++) {
-        erasePoint(
-          previousPoint.x + ((x - previousPoint.x) * i) / steps,
-          previousPoint.y + ((y - previousPoint.y) * i) / steps,
-        );
-      }
+    var y = Math.max(0, window.scrollY);
+    if (header) header.classList.toggle("is-scrolled", y > 16);
+    var footerVisible = footer && footer.getBoundingClientRect().top < window.innerHeight;
+    var showTop = y > Math.max(700, landingHeight) && (!footerVisible || document.activeElement === backTop);
+    backTop.classList.toggle("is-visible", showTop);
+    // Remove it from keyboard navigation immediately, including during fade-out.
+    backTop.tabIndex = showTop ? 0 : -1;
+
+    if (!reducedMotion.matches) {
+      progress.style.transform = "scaleX(" + (scrollRange ? Math.min(1, y / scrollRange) : 0) + ")";
     }
-    erasePoint(x, y);
-    previousPoint = { x, y };
-    maskContext.globalCompositeOperation = "source-over";
-    renderFog();
+    // A small, capped drift shares this event-driven frame; no idle animation loop.
+    var nextHeroShift = reducedMotion.matches ? 0 : Math.round(Math.min(y, landingHeight) * 0.045);
+    nextHeroShift = Math.min(28, nextHeroShift);
+    if (landingImage && nextHeroShift !== heroShift) {
+      landingImage.style.setProperty("--hero-shift", nextHeroShift + "px");
+      heroShift = nextHeroShift;
+    }
   }
 
-  function syncControls() {
-    document.body.classList.toggle("frost-disabled", !enabled);
-    toggle.setAttribute("aria-pressed", String(enabled));
-    if (hint) hint.classList.toggle("dismissed", !enabled);
+  function scheduleUpdate() {
+    if (!frame) frame = window.requestAnimationFrame(updateScroll);
   }
 
-  controls.hidden = false;
-  resize();
-  syncControls();
-
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resize, 120);
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  window.addEventListener("pageshow", measure);
+  reducedMotion.addEventListener("change", function (event) {
+    if (event.matches) showAll();
+    measure();
   });
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      if (!enabled || (event.pointerType === "touch" && event.buttons === 0))
-        return;
-      const now = performance.now();
-      if (now - lastMove > 160) previousPoint = null;
-      lastMove = now;
-      lastPoint = { x: event.clientX, y: event.clientY };
-      if (!frame) frame = requestAnimationFrame(erase);
-      if (!hintTimer && hint)
-        hintTimer = setTimeout(() => hint.classList.add("dismissed"), 2500);
-    },
-    { passive: true },
-  );
-  window.addEventListener(
-    "pointerdown",
-    (event) => {
-      previousPoint = null;
-      lastPoint = { x: event.clientX, y: event.clientY };
-      if (!frame) frame = requestAnimationFrame(erase);
-    },
-    { passive: true },
-  );
-  window.addEventListener(
-    "pointerup",
-    () => {
-      previousPoint = null;
-    },
-    { passive: true },
-  );
-  document.addEventListener("pointerleave", () => {
-    previousPoint = null;
-  });
-  toggle.addEventListener("click", () => {
-    enabled = !enabled;
-    if (enabled) resize();
-    syncControls();
-    try {
-      localStorage.setItem("ryppo-frost", enabled ? "on" : "off");
-    } catch {
-      /* Optional preference. */
-    }
-  });
-  window.setInterval(() => {
-    // Restore only the wipe mask: repeated frames can never make the fog denser.
-    if (enabled && !document.hidden && !reducedMotion.matches) {
-      maskContext.fillStyle = "rgba(255,255,255,.035)";
-      maskContext.fillRect(0, 0, width, height);
-      renderFog();
-    }
-  }, 1800);
+  // Font swaps and reflow can change the scroll range without a window resize.
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(measure).observe(document.body);
+  } else if (document.fonts) {
+    document.fonts.ready.then(measure);
+  }
+  measure();
 })();

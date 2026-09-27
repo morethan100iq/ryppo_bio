@@ -1,0 +1,22 @@
+/* Cygre by RandomMaerks. Original TTF files; see Cygre-EULA.pdf. */
+@font-face {
+  font-family: "Cygre";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./Cygre-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cygre";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./Cygre-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cygre";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./Cygre-SemiBold.ttf") format("truetype");
+}

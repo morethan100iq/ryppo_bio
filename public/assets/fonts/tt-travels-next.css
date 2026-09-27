@@ -1,0 +1,8 @@
+/* TT Travels Next Trial variable font. For personal local testing only. */
+@font-face {
+  font-family: "TT Travels Next";
+  src: url("./tt-travels-next-trial-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}

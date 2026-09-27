@@ -24,6 +24,14 @@ const interfaceIcons = [
 ];
 const downloads = [
   [
+    "https://raw.githubusercontent.com/vercel/geist-font/main/OFL.txt",
+    "public/assets/fonts/OFL-Geist.txt",
+  ],
+  [
+    "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrMdmgPn.woff2",
+    "public/assets/fonts/geist-mono-cyrillic.woff2",
+  ],
+  [
     "https://raw.githubusercontent.com/lucide-icons/lucide/main/LICENSE",
     "public/assets/icons/LICENSE-Lucide.txt",
   ],
@@ -61,6 +69,16 @@ const fonts = [
 ];
 let fontCSS =
   "/* Geist Mono (400, 600) — https://vercel.com/font, SIL Open Font License 1.1.\n   Локальные файлы, внешних запросов нет. */\n";
+fontCSS += `/* Cyrillic variable subset, Google Fonts v6; see OFL-Geist.txt. */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(./geist-mono-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+`;
 for (const [subset, url, filename, range] of fonts) {
   for (const weight of [400, 600]) {
     const fontURL = url.replace("-600-", `-${weight}-`);
@@ -76,5 +94,5 @@ for (const [subset, url, filename, range] of fonts) {
 }
 await writeFile("public/assets/fonts/geist-mono.css", fontCSS);
 console.log(
-  `Downloaded ${downloads.length} icon/license assets and ${fonts.length * 2} font files.`,
+  `Downloaded ${downloads.length + fonts.length * 2} local icon, license and font assets.`,
 );
