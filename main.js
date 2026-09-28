@@ -117,7 +117,7 @@
   var landing = document.querySelector(".landing");
   var landingImage = document.querySelector(".landing-image");
   var header = document.querySelector(".site-header");
-  var footer = document.querySelector(".site-footer");
+  var footerBackTop = document.querySelector(".site-footer .back-top");
   var progress = document.createElement("div");
   progress.className = "scroll-progress";
   progress.setAttribute("aria-hidden", "true");
@@ -145,8 +145,10 @@
     frame = 0;
     var y = Math.max(0, window.scrollY);
     if (header) header.classList.toggle("is-scrolled", y > 16);
-    var footerVisible = footer && footer.getBoundingClientRect().top < window.innerHeight;
-    var showTop = y > Math.max(700, landingHeight) && (!footerVisible || document.activeElement === backTop);
+    // The large footer can enter the viewport before its navigation does.
+    var footerLinkRect = footerBackTop && footerBackTop.getBoundingClientRect();
+    var footerLinkVisible = footerLinkRect && footerLinkRect.top >= 0 && footerLinkRect.bottom <= window.innerHeight;
+    var showTop = y > Math.max(700, landingHeight) && (!footerLinkVisible || document.activeElement === backTop);
     backTop.classList.toggle("is-visible", showTop);
     // Remove it from keyboard navigation immediately, including during fade-out.
     backTop.tabIndex = showTop ? 0 : -1;

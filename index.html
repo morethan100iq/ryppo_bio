@@ -91,7 +91,6 @@
       <div class="page-shell" id="bio">
         <div class="section-decoration" aria-hidden="true" translate="no">
           <span class="decoration-wordmark">ryppo.</span>
-          <span class="decoration-system">RYPPO SYSTEM</span>
         </div>
         <section
           class="about-section content-section"
@@ -122,68 +121,6 @@
                 Простейший комфорт не должен стоить денег.
               </p>
             </div>
-            <section
-              class="stack-section"
-              id="stack"
-              aria-labelledby="stack-title"
-            >
-              <div class="section-heading reveal">
-                <span class="section-number" aria-hidden="true">02 <span>/</span></span>
-                <h3 class="section-title" id="stack-title">Стек</h3>
-              </div>
-              <ul class="tech-list" aria-label="Технологии">
-                <li class="tech-item reveal">
-                  <img
-                    class="icon"
-                    src="./public/assets/icons/python.svg"
-                    alt=""
-                    width="26"
-                    height="26"
-                  />
-                  <span>Python</span>
-                </li>
-                <li class="tech-item reveal" style="--reveal-delay: 40ms">
-                  <img
-                    class="icon"
-                    src="./public/assets/icons/javascript.svg"
-                    alt=""
-                    width="26"
-                    height="26"
-                  />
-                  <span>JavaScript</span>
-                </li>
-                <li class="tech-item reveal" style="--reveal-delay: 80ms">
-                  <img
-                    class="icon"
-                    src="./public/assets/icons/fastapi.svg"
-                    alt=""
-                    width="26"
-                    height="26"
-                  />
-                  <span>FastAPI</span>
-                </li>
-                <li class="tech-item reveal" style="--reveal-delay: 120ms">
-                  <img
-                    class="icon"
-                    src="./public/assets/icons/docker.svg"
-                    alt=""
-                    width="28"
-                    height="28"
-                  />
-                  <span>Docker</span>
-                </li>
-                <li class="tech-item reveal" style="--reveal-delay: 160ms">
-                  <img
-                    class="icon"
-                    src="./public/assets/icons/postgresql.svg"
-                    alt=""
-                    width="26"
-                    height="26"
-                  />
-                  <span>PostgreSQL</span>
-                </li>
-              </ul>
-            </section>
           </div>
         </section>
 
@@ -193,7 +130,7 @@
           aria-labelledby="projects-title"
         >
           <div class="section-heading reveal">
-            <span class="section-number" aria-hidden="true">03 <span>/</span></span>
+            <span class="section-number" aria-hidden="true">02 <span>/</span></span>
             <h2 class="section-title" id="projects-title">Проекты</h2>
           </div>
           <article class="featured-project reveal" aria-labelledby="hurmobot-title">
@@ -219,84 +156,101 @@
               </a>
             </div>
           </article>
-          <ul class="project-list" aria-label="Другие проекты">
-            <li class="reveal" style="--reveal-delay: 80ms">
-              <a class="project-card" href="https://t.me/LycheVPNbot" target="_blank" rel="noopener noreferrer" aria-labelledby="lychevpn-title">
-                <div class="project-thumb">
-                  <img src="./public/assets/projects/lychevpn/lyche2.webp" alt="Обложка LycheVPN с розовым личи и названием проекта" width="960" height="540" loading="lazy" decoding="async" />
-                </div>
-                <div class="project-top">
-                  <span class="project-kind">VPN-сервис</span>
-                  <span class="project-status project-status-archived">архив</span>
+          <section class="project-group selected-projects" aria-labelledby="selected-title">
+            <h3 class="project-group-title reveal" id="selected-title" translate="no">SELECTED</h3>
+            <ul class="project-list" aria-labelledby="selected-title">
+              <li class="reveal">
+                <a class="project-card" href="https://t.me/l00iq_bot" target="_blank" rel="noopener noreferrer" aria-labelledby="video-bot-title">
+                  <div class="project-thumb">
+                    <img src="./public/assets/projects/video-downloader-bot/tt_main.webp" alt="Красный робот с кнопкой воспроизведения — обложка бота для скачивания видео" width="960" height="540" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-top">
+                      <span class="project-kind">Telegram-бот</span>
+                      <span class="project-state project-state-live"><span aria-hidden="true">●</span> активен</span>
+                    </div>
+                    <h4 class="project-name" id="video-bot-title">Бот для скачивания видео</h4>
+                    <p class="project-desc">Скачивает видео из TikTok, YouTube, Instagram, VK и Pinterest без водяного знака или сохраняет звук в MP3.</p>
+                    <div class="project-bottom">
+                      <span class="project-tech">Python</span>
+                      <span class="project-action">Открыть бота <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" /></span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="project-group archive-projects" aria-labelledby="archive-title">
+            <h3 class="project-group-title reveal" id="archive-title" translate="no">ARCHIVE</h3>
+            <ul class="archive-list" aria-labelledby="archive-title">
+              <li class="reveal">
+                <a class="archive-row" href="https://t.me/LycheVPNbot" target="_blank" rel="noopener noreferrer" aria-labelledby="lychevpn-title">
+                  <h4 class="archive-name" id="lychevpn-title" translate="no">LycheVPN</h4>
+                  <p class="archive-desc">Поднял VPN-инфраструктуру на 3X-UI + VLESS + XTLS-Reality — как бизнес не взлетело, зато получил опыт с сетевой инфраструктурой и биллингом.</p>
+                  <span class="project-state project-state-archived"><span aria-hidden="true">○</span> архив</span>
                   <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
-                </div>
-                <h3 class="project-name" id="lychevpn-title" translate="no">LycheVPN</h3>
-                <p class="project-desc">VPN на связке 3X-UI + VLESS + XTLS-Reality с Telegram-ботом и мини-приложением.</p>
-                <p class="project-detail">Запустил, но прогорел и положил в архив 😭</p>
-                <div class="project-bottom"><span class="project-tech">Telegram-бот</span><span class="project-source">Telegram</span></div>
-              </a>
-            </li>
-            <li class="reveal" style="--reveal-delay: 160ms">
-              <a class="project-card" href="https://t.me/l00iq_bot" target="_blank" rel="noopener noreferrer" aria-labelledby="video-bot-title">
-                <div class="project-thumb project-thumb-video">
-                  <img src="./public/assets/projects/video-downloader-bot/tt_main.webp" alt="Красный робот с кнопкой воспроизведения — обложка бота для скачивания видео" width="960" height="540" loading="lazy" decoding="async" />
-                </div>
-                <div class="project-top">
-                  <span class="project-kind">Telegram-бот</span>
-                  <span class="project-status project-status-live">активен</span>
+                </a>
+              </li>
+              <li class="reveal">
+                <a class="archive-row" href="https://github.com/morethan100iq/pro100code" target="_blank" rel="noopener noreferrer" aria-labelledby="pro100code-title">
+                  <h4 class="archive-name" id="pro100code-title" translate="no">pro100code</h4>
+                  <p class="archive-desc">Сайт для тех, кто готовится к экзамену по информатике. Есть несколько заданий по теории для ЕГЭ. Проект не закончен: нужно добавить задания из банка ФИПИ.</p>
+                  <span class="project-state project-state-archived"><span aria-hidden="true">○</span> архив</span>
                   <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
-                </div>
-                <h3 class="project-name" id="video-bot-title">Бот для скачивания видео</h3>
-                <p class="project-desc">Скачивает видео из TikTok, YouTube, Instagram, VK и Pinterest без водяного знака или сохраняет звук в MP3.</p>
-                <div class="project-bottom"><span class="project-tech">Python</span><span class="project-source">Telegram</span></div>
-              </a>
-            </li>
-            <li class="reveal">
-              <a
-                class="project-card"
-                href="https://github.com/morethan100iq/pro100code"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div class="project-top"><span class="project-kind">Веб-сайт</span>
-                <span class="project-status project-status-archived">архив</span>
-                <img
-                  class="icon link-arrow"
-                  src="./public/assets/icons/arrow-up-right.svg"
-                  alt=""
-                  width="20"
-                  height="20"
-                />
-                </div>
-                <h3 class="project-name">pro100code</h3>
-                <p class="project-desc">Сайт для тех, кто готовится к экзамену по информатике.</p>
-                <p class="project-detail">Есть несколько заданий по теории для ЕГЭ. Проект не закончен: нужно добавить задания из банка ФИПИ.</p>
-                <div class="project-bottom"><span class="project-tech">JavaScript</span><span class="project-source">GitHub</span></div>
-              </a>
-            </li>
-            <li class="reveal" style="--reveal-delay: 120ms">
-              <a
-                class="project-card"
-                href="https://github.com/morethan100iq/wishlist"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div class="project-top"><span class="project-kind">Веб-сайт</span>
-                <span class="project-status project-status-archived">архив</span>
-                <img
-                  class="icon link-arrow"
-                  src="./public/assets/icons/arrow-up-right.svg"
-                  alt=""
-                  width="20"
-                  height="20"
-                />
-                </div>
-                <h3 class="project-name">wishlist</h3>
-                <p class="project-desc">Список желаний, красивый дизайн, приятно пользоваться. Перестал заниматься им.</p>
-                <div class="project-bottom"><span class="project-tech">HTML</span><span class="project-source">GitHub</span></div>
-              </a>
-            </li>
-          </ul>
+                </a>
+              </li>
+              <li class="reveal">
+                <a class="archive-row" href="https://github.com/morethan100iq/wishlist" target="_blank" rel="noopener noreferrer" aria-labelledby="wishlist-title">
+                  <h4 class="archive-name" id="wishlist-title" translate="no">wishlist</h4>
+                  <p class="archive-desc">Список желаний, красивый дизайн, приятно пользоваться. Перестал заниматься им.</p>
+                  <span class="project-state project-state-archived"><span aria-hidden="true">○</span> архив</span>
+                  <img class="icon link-arrow" src="./public/assets/icons/arrow-up-right.svg" alt="" width="20" height="20" />
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="stack-section content-section" id="stack" aria-labelledby="stack-title">
+          <div class="section-heading reveal">
+            <span class="section-number" aria-hidden="true">03 <span>/</span></span>
+            <h2 class="section-title" id="stack-title">Стек</h2>
+          </div>
+          <div class="stack-grid">
+            <section class="stack-category reveal" aria-labelledby="stack-code-title">
+              <h3 class="stack-category-title" id="stack-code-title">КОД</h3>
+              <ul class="tech-list" aria-labelledby="stack-code-title" translate="no">
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/python.svg" alt="" width="24" height="24" /><span>Python</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/javascript.svg" alt="" width="24" height="24" /><span>JavaScript</span></li>
+              </ul>
+            </section>
+            <section class="stack-category reveal" aria-labelledby="stack-backend-title">
+              <h3 class="stack-category-title" id="stack-backend-title" translate="no">BACKEND</h3>
+              <ul class="tech-list" aria-labelledby="stack-backend-title" translate="no">
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/fastapi.svg" alt="" width="24" height="24" /><span>FastAPI</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/postgresql.svg" alt="" width="24" height="24" /><span>PostgreSQL</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/cache.svg" alt="" width="24" height="24" /><span>Redis</span></li>
+              </ul>
+            </section>
+            <section class="stack-category reveal" aria-labelledby="stack-infra-title">
+              <h3 class="stack-category-title" id="stack-infra-title">ИНФРА</h3>
+              <ul class="tech-list" aria-labelledby="stack-infra-title" translate="no">
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/docker.svg" alt="" width="24" height="24" /><span>Docker</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/linux.svg" alt="" width="24" height="24" /><span>Linux</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/git-branch.svg" alt="" width="24" height="24" /><span>Git</span></li>
+              </ul>
+            </section>
+            <section class="stack-category reveal" aria-labelledby="stack-bots-title">
+              <h3 class="stack-category-title" id="stack-bots-title">БОТЫ / API</h3>
+              <ul class="tech-list" aria-labelledby="stack-bots-title" translate="no">
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/bot.svg" alt="" width="24" height="24" /><span>aiogram 3</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/telegram.svg" alt="" width="24" height="24" /><span>Telethon</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/braces.svg" alt="" width="24" height="24" /><span>Telegram Bot API</span></li>
+                <li class="tech-item"><img class="icon" src="./public/assets/icons/download.svg" alt="" width="24" height="24" /><span>yt-dlp</span></li>
+              </ul>
+            </section>
+          </div>
         </section>
 
         <section
@@ -304,58 +258,32 @@
           id="contact"
           aria-labelledby="contact-title"
         >
-          <div class="contact-copy reveal">
-            <div class="section-heading">
-              <span class="section-number" aria-hidden="true">04 <span>/</span></span>
-              <h2 class="section-title" id="contact-title">Контакты</h2>
-            </div>
-            <p>Отвечаю в Telegram</p>
+          <div class="contact-decoration" aria-hidden="true" translate="no"><span>ryppo.</span></div>
+          <div class="section-heading reveal">
+            <span class="section-number" aria-hidden="true">04 <span>/</span></span>
+            <h2 class="contact-title" id="contact-title">Есть идея?<br /> Напиши мне.</h2>
           </div>
-          <div class="contact-links reveal" style="--reveal-delay: 120ms">
-            <a
-              class="contact-link contact-telegram"
-              href="https://t.me/ryppo"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span><span class="contact-name">Telegram</span
-                ><span class="contact-handle">@ryppo</span></span
-              ><img
-                class="icon link-arrow"
-                src="./public/assets/icons/arrow-up-right.svg"
-                alt=""
-                width="23"
-                height="23"
-            /></a>
-            <a
-              class="contact-link"
-              href="https://github.com/morethan100iq"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span><span class="contact-name">GitHub</span
-                ><span class="contact-handle">morethan100iq</span></span
-              ><img
-                class="icon link-arrow"
-                src="./public/assets/icons/arrow-up-right.svg"
-                alt=""
-                width="23"
-                height="23"
-            /></a>
+          <div class="contact-action reveal">
+            <p class="contact-channel"><span class="cyan-dot" aria-hidden="true"></span>Telegram</p>
+            <a class="contact-telegram" href="https://t.me/ryppo" target="_blank" rel="noopener noreferrer" aria-label="Написать @ryppo в Telegram">
+              <span translate="no">@ryppo</span>
+              <svg class="contact-arrow link-arrow" xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7" /></svg>
+            </a>
           </div>
         </section>
       </div>
     </main>
     <div class="page-shell">
-      <footer class="site-footer reveal">
-        <a class="footer-brand" href="#top">ryppo<span>.</span></a
-        ><a href="#top" class="back-top"
-          >Наверх
-          <img
-            class="icon"
-            src="./public/assets/icons/arrow-up-right.svg"
-            alt=""
-            width="15"
-            height="15"
-        /></a>
+      <footer class="site-footer">
+        <p class="footer-wordmark" aria-hidden="true" translate="no">RYPPO<span>.</span></p>
+        <div class="footer-bottom">
+          <p class="footer-credit">Никита / <time datetime="2026">2026</time></p>
+          <nav class="footer-links" aria-label="Социальные сети">
+            <a href="https://t.me/ryppo" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="https://github.com/morethan100iq" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </nav>
+          <a href="#top" class="back-top"><span class="back-top-arrow" aria-hidden="true">↑</span> Наверх</a>
+        </div>
       </footer>
     </div>
     <script src="./main.js" defer></script>

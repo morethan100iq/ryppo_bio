@@ -1,7 +1,14 @@
-import { mkdir, copyFile, cp, readFile, writeFile, access } from "node:fs/promises";
+import { mkdir, copyFile, cp, readFile, writeFile, access, rm } from "node:fs/promises";
 import { resolve, dirname, sep } from "node:path";
 
-await mkdir("dist", { recursive: true });
+const workspace = resolve(".");
+const output = resolve(workspace, "dist");
+// Remove generated output only; retired assets must not survive the next build.
+if (dirname(output) !== workspace || !output.startsWith(workspace + sep)) {
+  throw new Error("Build output must be the workspace's dist directory.");
+}
+await rm(output, { recursive: true, force: true });
+await mkdir(output, { recursive: true });
 for (const file of ["styles.css", "main.js"]) {
   await copyFile(file, `dist/${file}`);
 }
@@ -24,7 +31,6 @@ if (process.env.SITE_URL) {
 }
 await writeFile("dist/index.html", builtHtml);
 const html = await readFile("dist/index.html", "utf8");
-const output = resolve("dist");
 const refs = new Set();
 function addReference(url, parent) {
   if (/^(?:[a-z]+:|\/\/|#)/i.test(url)) return;
@@ -40,8 +46,7 @@ for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
 }
 // Social preview metadata is not covered by the src/href scan.
 addReference("./assets/og-ryppo.png", resolve(output, "index.html"));
-// Проверяем и ES-модульные импорты внутри локальных скриптов
-// (например, liquid-glass-init.js -> liquid-glass.js).
+// Проверяем и ES-модульные импорты внутри локальных скриптов.
 for (const script of [...refs]) {
   if (!script.endsWith(".js")) continue;
   const code = await readFile(script, "utf8");
